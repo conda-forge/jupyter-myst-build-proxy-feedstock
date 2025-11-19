@@ -45,7 +45,7 @@ tests:
       run:
         - jupyterlab >=${{ jupyterlab_min }}
     files:
-      source:
+      recipe:
         - test_list_serverproxy_endpoints.py
 
 about:
