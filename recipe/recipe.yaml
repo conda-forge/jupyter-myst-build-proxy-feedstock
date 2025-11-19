@@ -23,6 +23,7 @@ requirements:
     - python ${{ python_min }}.*
     - hatchling >=1.27.0
     - hatch-jupyter-builder >=0.9.1
+    - hatch-nodejs-version
     - jupyterlab >=${{ jupyterlab_min }}
     - wheel
     - pip
