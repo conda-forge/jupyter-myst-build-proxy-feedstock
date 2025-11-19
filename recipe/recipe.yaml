@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: jupyter-myst-build-proxy
-  version: 0.4.1
+  version: "0.5.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
-  sha256: ff89c1ca1558153b7d212d8333d89483fd5275ed5b6357ac5fe3aba305c9121e
+  sha256: 0225e7757747ae228c32f36a0136603364ce2067319769bd37f5504f95709f47
 
 build:
   number: 0
