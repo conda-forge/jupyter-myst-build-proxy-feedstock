@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: jupyter-myst-build-proxy
   version: "0.5.0"
-  jupyterlab_version: "4.4.9"
+  jupyterlab_min: "4.4.9"
 
 package:
   name: ${{ name|lower }}
@@ -23,7 +23,7 @@ requirements:
     - python ${{ python_min }}.*
     - hatchling >=1.27.0
     - hatch-jupyter-builder >=0.9.1
-    - jupyterlab ${{ jupyterlab_version }}
+    - jupyterlab >=${{ jupyterlab_min }}
     - wheel
     - pip
   run:
@@ -42,7 +42,7 @@ tests:
       - python test_list_serverproxy_endpoints.py | grep "${{ name | replace('-', '_') }}"
     requirements:
       run:
-        - jupyterlab ${{ jupyterlab_version }}
+        - jupyterlab >=${{ jupyterlab_min }}
 
 about:
   homepage: https://github.com/ryanlovett/jupyter-myst-build-proxy/
