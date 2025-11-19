@@ -2,7 +2,8 @@ schema_version: 1
 
 context:
   name: jupyter-myst-build-proxy
-  version: 0.4.1
+  version: "0.5.0"
+  jupyterlab_min: "4.4.9"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
-  sha256: ff89c1ca1558153b7d212d8333d89483fd5275ed5b6357ac5fe3aba305c9121e
+  sha256: 0225e7757747ae228c32f36a0136603364ce2067319769bd37f5504f95709f47
 
 build:
   number: 0
@@ -20,7 +21,10 @@ build:
 requirements:
   host:
     - python ${{ python_min }}.*
-    - setuptools >=45
+    - hatchling >=1.27.0
+    - hatch-jupyter-builder >=0.9.1
+    - hatch-nodejs-version
+    - jupyterlab >=${{ jupyterlab_min }}
     - wheel
     - pip
   run:
@@ -33,6 +37,16 @@ tests:
       pip_check: true
       imports:
         - "${{ name | replace('-', '_') }}"
+  - script:
+      - jupyter labextension list
+      - jupyter labextension list 2>&1 | grep -ie "${{ name }}.*OK.*"
+      - python test_list_serverproxy_endpoints.py | grep "${{ name | replace('-', '_') }}"
+    requirements:
+      run:
+        - jupyterlab >=${{ jupyterlab_min }}
+    files:
+      recipe:
+        - test_list_serverproxy_endpoints.py
 
 about:
   homepage: https://github.com/ryanlovett/jupyter-myst-build-proxy/
