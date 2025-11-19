@@ -44,6 +44,9 @@ tests:
     requirements:
       run:
         - jupyterlab >=${{ jupyterlab_min }}
+    files:
+      source:
+        - test_list_serverproxy_endpoints.py
 
 about:
   homepage: https://github.com/ryanlovett/jupyter-myst-build-proxy/
